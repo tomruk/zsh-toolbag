@@ -1,24 +1,30 @@
 language=''
 
 detect_language() {
-    if [ -n "$LANGUAGE" ] && [[ "$LANGUAGE" == *tr* ]]; then
-        $language='turkish'
+    if [[ "$LANGUAGE" =~ '.*tr.*' ]]; then
+        language='turkish'
+        return
     fi
-    if [ -n "$LC_ALL" ] && [[ "$LC_ALL" == *tr* ]]; then
-        $language='turkish'
+    if [[ "$LC_ALL" =~ '.*tr.*' ]]; then
+        language='turkish'
+        return
     fi
-    if [ -n "$LANG" ] && [[ "$LANG" == *tr* ]]; then
-        $language='turkish'
+    if [[ "$LANG" =~ '.*tr.*' ]]; then
+        language='turkish'
+        return
     fi
 
-    if [ -n "$LANGUAGE" ] && [[ "$LANGUAGE" == *en* ]]; then
-        $language='english'
+    if [[ "$LANGUAGE" =~ '.*en.*' ]]; then
+        language='english'
+        return
     fi
-    if [ -n "$LC_ALL" ] && [[ "$LC_ALL" == *en* ]]; then
-        $language='english'
+    if [[ "$LC_ALL" =~ '.*en.*' ]]; then
+        language='english'
+        return
     fi
-    if [ -n "$LANG" ] && [[ "$LANG" == *en* ]]; then
-        $language='english'
+    if [[ "$LANG" =~ '.*en.*' ]]; then
+        language='english'
+        return
     fi
 }
 
@@ -29,7 +35,7 @@ _yes() {
 
     if [[ "$language" == 'turkish' ]]; then
         string='e'
-    elif [ "$language" == 'english' ]; then
+    elif [[ "$language" == 'english' ]]; then
         string='y'
     else
         echo "Language $language is not supported"
@@ -38,6 +44,7 @@ _yes() {
 
     while true; do
         echo "$string"
+        sleep 0.5
     done
 }
 alias yes='_yes'
@@ -49,7 +56,7 @@ _no() {
 
     if [[ "$language" == 'turkish' ]]; then
         string='h'
-    elif [ "$language" == 'english' ]; then
+    elif [[ "$language" == 'english' ]]; then
         string='n'
     else
         echo "Language $language is not supported"
@@ -58,6 +65,7 @@ _no() {
 
     while true; do
         echo "$string"
+        sleep 0.5
     done
 }
 alias no='_no'
