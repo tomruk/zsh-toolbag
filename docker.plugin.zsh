@@ -1,5 +1,5 @@
-# dos stands for: docker short
-alias dos='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Image}}"'
+# doso stands for: docker short
+alias doso='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Image}}"'
 alias dops='docker ps'
 
 dopm() {
